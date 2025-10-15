@@ -2,61 +2,52 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../firebase";
+import "./Navbar.css"; // 👈 import the CSS file
 
 export default function Navbar() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // Listen for login/logout changes in Firebase
     const unsubscribe = onAuthStateChanged(auth, setUser);
     return () => unsubscribe();
   }, []);
 
   return (
-    <nav style={{
-      padding: "12px 16px",
-      background: "#0b1220",
-      color: "#e6eef6",
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center"
-    }}>
-      <Link
-        to="/"
-        style={{ color: "#06b6d4", textDecoration: "none", fontWeight: 700 }}
-      >
-        The Geek Games
-      </Link>
+    <nav className="navbar">
+      <div className="nav-container">
+        <Link to="/" className="nav-logo">
+  <img 
+    src="/Geekgameslogo.png" 
+    alt="The Geek Games Logo" 
+    className="site-logo" 
+  />
+  <span className="site-title">The Geek Games</span>
+</Link>
 
-      <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-        <Link to="/">Home</Link>
 
-        {!user && (
-          <>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
-          </>
-        )}
+        <div className="nav-links">
+          <Link to="/">Home</Link>
+          <Link to="/contact">Contact Us</Link>
 
-        {user && (
-          <>
-            <span style={{ opacity: 0.8, fontSize: 14 }}>{user.email}</span>
-            <button
-              onClick={() => signOut(auth)}
-              style={{
-                background: "#0f1724",
-                color: "white",
-                border: "1px solid #223",
-                padding: "6px 10px",
-                borderRadius: 6,
-                cursor: "pointer"
-              }}
-            >
-              Logout
-            </button>
-          </>
-        )}
+          {!user && (
+            <>
+              <Link to="/login" className="nav-button">Login</Link>
+              <Link to="/signup" className="nav-button primary">Sign Up</Link>
+              <Link to="/contact">Contact Us</Link>
+            </>
+          )}
+
+          {user && (
+            <>
+              <span className="nav-user">{user.email}</span>
+              <button onClick={() => signOut(auth)} className="nav-button">
+                Logout
+              </button>
+            </>
+          )}
+        </div>
       </div>
     </nav>
   );
 }
+

@@ -1,0 +1,46 @@
+/* src/pages/Home.css */
+.home {
+  padding: 1rem;
+  max-width: 900px;
+  margin: auto;
+  color: #e5e7eb;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.upcoming {
+  background: #111827;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 8px #0003;
+}
+
+.home-tournaments {
+  display: grid;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+.home-card {
+  background: #0b1220;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.btn {
+  display: inline-block;
+  background: #2563eb;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background: #1d4ed8;
+}

@@ -14,7 +14,7 @@ export default function Signup() {
     setErr("");
     try {
       await createUserWithEmailAndPassword(auth, email, pass);
-      nav("/"); // go home after signup
+      nav("/dashboard"); 
     } catch (e) {
       setErr(e.message);
     }

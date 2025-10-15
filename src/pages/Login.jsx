@@ -16,7 +16,7 @@ export default function Login() {
     setErr("");
     try {
       await signInWithEmailAndPassword(auth, email, pass);
-      nav("/");
+      nav("/dashboard");
     } catch (e) {
       setErr(e.message);
     }
@@ -26,7 +26,7 @@ export default function Login() {
     setErr("");
     try {
       await signInWithPopup(auth, provider);
-      nav("/");
+      nav("/dashboard");
     } catch (e) {
       setErr(e.message);
     }
