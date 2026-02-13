@@ -33,13 +33,12 @@ export default function Navbar() {
             <>
               <Link to="/login" className="nav-button">Login</Link>
               <Link to="/signup" className="nav-button primary">Sign Up</Link>
-              <Link to="/contact">Contact Us</Link>
             </>
           )}
 
           {user && (
             <>
-              <span className="nav-user">{user.email}</span>
+              <span className="nav-user">{user.displayName || user.email}</span>
               <button onClick={() => signOut(auth)} className="nav-button">
                 Logout
               </button>

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { collection, onSnapshot, orderBy, query, where } from "firebase/firestore";
 import { db } from "../firebase";
 import { useAuth } from "../context/AuthContext";
+import SetDisplayName from "../components/SetDisplayName";
 import "./Dashboard.css"; //
 
 export default function Dashboard() {
@@ -57,7 +58,15 @@ export default function Dashboard() {
       <header className="dash-header">
         <div>
           <h1>Dashboard</h1>
-          <p className="dash-sub">Signed in as <strong>{user?.email}</strong></p>
+          <p className="dash-sub">
+  Signed in as <strong>{user?.displayName || user?.email}</strong>
+</p>
+          {user && !user.displayName && (
+  <div style={{ marginTop: 10 }}>
+    <small>Choose a username to personalize your account:</small>
+    <SetDisplayName />
+  </div>
+)}
         </div>
         <div className="dash-actions">
   {isAdmin && <Link to="/create" className="btn btn-primary">➕ Create Tournament</Link>}
